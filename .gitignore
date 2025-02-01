@@ -1,1 +1,12 @@
+# Folders
 downloaded_images/
+__pycache__/
+apicache/
+_archive/
+
+# Files
+*.ctrl
+user-config.py
+user-password.py
+example.txt
+test.py
