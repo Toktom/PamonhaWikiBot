@@ -56,6 +56,13 @@ The <u>image_file_downloader.py</u> script downloads images from the wiki file p
 - **save_image**: Downloads and saves an image from a specified URL.
 - **save_page**: Saves content to a specified Wikipedia page.
 
+
+## TO-DO's
+
+- [ ] Add an example on how to use the available tools to create a simple item page.
+- [ ] Add tools for checking pages in different ways, i.e. categories, changes on the page, etc.
+- [ ] Improve the current README.md file.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
