@@ -17,7 +17,7 @@ def connect_to_wiki(lang="pt-br") -> pwb.Site:
         raise NotImplementedError("Only pt-br is supported.")
 
 
-def get_page_content(wiki_site: pwb.Site, page: str) -> str:
+def get_page(wiki_site: pwb.Site, page: str) -> str:
     """
     Gets the content of a page.
 
@@ -45,7 +45,7 @@ def page_preprocessing(
 
     """
     wiki_ptbr = connect_to_wiki(lang)
-    extracted_page = get_page_content(wiki_ptbr, page)
+    extracted_page = get_page(wiki_ptbr, page)
     page_existance = extracted_page.exists()
 
     if raw_page:
@@ -121,3 +121,38 @@ def get_template_parameter(
         str: The extracted parameter.
     """
     return template.get(parameter_name).value if template.has(parameter_name) else None
+
+def get_file_page_url(wiki_site: pwb.Site, page_name: str) -> str:
+    """
+    Gets the URL of a file page.
+    
+    Args:
+        wiki_site (pwb.Site): The site to get the file from.
+        page_name (str): The name of the file page.
+
+    Returns:
+        str: The URL of the file page
+    """
+    site = connect_to_wiki("en-gb")
+    page = get_page(site, page_name)
+    file_page = pwb.page.FilePage(page)
+    url = file_page.get_file_url()
+    return url
+
+
+def save_page(page: pwb.Page, content: str, summary: str, minor: bool = False) -> None:
+    """
+    Saves the content to a page.
+
+    Args:
+        page (pwb.Page): The page to save the content to.
+        content (str): The content to be saved.
+        summary (str): The summary of the edit.
+        minor (bool, optional): If True, marks the edit as minor. Defaults to False.
+        
+    Returns:
+        None
+    """
+    page.text = content
+    page.save(summary=summary, minor=minor)
+    return None
